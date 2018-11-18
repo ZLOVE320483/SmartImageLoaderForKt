@@ -7,6 +7,7 @@ import com.zlove.core.delegate.DefaultDelegate
 import com.zlove.core.delegate.FrescoDelegate
 import com.zlove.core.delegate.GlideDelegate
 import com.zlove.core.listener.ConfigProvider
+import com.zlove.core.listener.ISmartImageView
 import java.io.File
 
 class ImageLoader {

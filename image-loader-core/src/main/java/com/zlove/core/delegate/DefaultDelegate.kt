@@ -4,7 +4,7 @@ import android.content.Context
 import android.net.Uri
 import com.zlove.core.DisplayRequest
 import com.zlove.core.DisplayRequestBuilder
-import com.zlove.core.ISmartImageView
+import com.zlove.core.listener.ISmartImageView
 import com.zlove.core.ImageLoaderDelegate
 import com.zlove.core.listener.ConfigProvider
 import java.io.File
