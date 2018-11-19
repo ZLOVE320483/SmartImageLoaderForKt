@@ -8,20 +8,20 @@ class CircleOptions(builder: Builder) {
         OVERLAY_COLOR, BITMAP_ONLY
     }
 
-    private var mBorderWidth: Float? = null
+    var mBorderWidth: Float
 
     @ColorInt
-    private var mBorderColor: Int? = null
+    var mBorderColor: Int
 
     @ColorInt
-    private var mOverlayColor: Int? = null
+    var mOverlayColor: Int
 
-    private var mRoundAsCircle: Boolean? = null
+    var mRoundAsCircle: Boolean
 
-    private var mCornersRadius: Float? = null
-    private var mPadding: Float? = null
-    private var mCornersRadiiOptions: CornersRadiiOptions? = null
-    private var mRoundingMethod: RoundingMethod? = null
+    var mCornersRadius: Float
+    var mPadding: Float
+    var mCornersRadiiOptions: CornersRadiiOptions
+    var mRoundingMethod: RoundingMethod? = null
 
     init {
         mBorderWidth = builder.mBorderWidth
@@ -41,7 +41,7 @@ class CircleOptions(builder: Builder) {
         var mOverlayColor = Color.TRANSPARENT
         var mCornersRadius = 0f
         var mPadding = 0f
-        var mCornersRadiiOptions: CornersRadiiOptions? = null
+        lateinit var mCornersRadiiOptions: CornersRadiiOptions
         var mRoundingMethod = RoundingMethod.BITMAP_ONLY
 
         fun border(@ColorInt borderColor: Int, borderWidth: Float): Builder {
@@ -95,6 +95,5 @@ class CircleOptions(builder: Builder) {
         }
     }
 
-    class CornersRadiiOptions(topLeft: Float, topRight: Float,
-                              bottomRight: Float, bottomLeft: Float)
+    class CornersRadiiOptions(val topLeft: Float, val topRight: Float, val bottomRight: Float, val bottomLeft: Float)
 }

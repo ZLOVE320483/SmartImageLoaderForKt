@@ -13,7 +13,7 @@ import com.zlove.core.utils.Utils
 class DisplayRequestBuilder {
 
     lateinit var mUri: Uri
-    var mContext: Context? = null
+    lateinit var mContext: Context
     var mAutoPlayAnimations = false
     var mAutoRotate = true
     var mDecodeAllFrames = false
@@ -24,7 +24,7 @@ class DisplayRequestBuilder {
     var mFailureImage = 0
     var mBitmapConfig: Bitmap.Config = Bitmap.Config.ARGB_8888
     var mActualImageScaleType = ScaleType.CENTER_CROP
-    var mUrlList: List<String>? = null
+    lateinit var mUrlList: List<String>
     var mCircleOptions: CircleOptions? = null
     var mBlurOptions: BlurOptions? = null
     var mCropOptions: CropOptions? = null
@@ -47,7 +47,7 @@ class DisplayRequestBuilder {
         this.mUri = Utils.fromResourceId(ImageLoader.sPkgName, resourceId)
     }
 
-    constructor(@NonNull urlList: List<String>?): this() {
+    constructor(@NonNull urlList: List<String>): this() {
         this.mUrlList = urlList
     }
 

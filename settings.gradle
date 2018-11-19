@@ -1,1 +1,1 @@
-include ':app', ':image-loader-core'
+include ':app', ':image-loader-core', ':image-loader-fresco'
