@@ -49,19 +49,16 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
         }
     }
 
-    override fun display(resourceId: Int?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun display(resourceId: Int) {
     }
 
-    override fun display(url: String?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun display(url: String) {
     }
 
-    override fun display(uri: Uri?) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    override fun display(uri: Uri) {
     }
 
-    override fun load(context: Context?, url: String?) {
+    override fun load(context: Context, url: String?) {
         if (null == url || url.isEmpty()) {
             return
         }
@@ -82,13 +79,13 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
                 val imageRequest = buildImageRequest(displayRequest, com.zlove.core.utils.Utils.fromUrl(url))
                 val imagePipeline = Fresco.getImagePipeline()
                 val dataSource = imagePipeline.fetchDecodedImage(imageRequest, null)
-                imageLoadListener.let { dataSource.subscribe(createBaseBitmapDataSubscriber(it!!), UiThreadImmediateExecutorService.getInstance()) }
+                imageLoadListener?.let { dataSource.subscribe(createBaseBitmapDataSubscriber(it), UiThreadImmediateExecutorService.getInstance()) }
             }
         } else {
             val imageRequest = buildImageRequest(displayRequest, displayRequest.mUri)
             val imagePipeline = Fresco.getImagePipeline()
             val dataSource = imagePipeline.fetchDecodedImage(imageRequest, null)
-            imageLoadListener.let { dataSource.subscribe(createBaseBitmapDataSubscriber(it!!), UiThreadImmediateExecutorService.getInstance()) }
+            imageLoadListener?.let { dataSource.subscribe(createBaseBitmapDataSubscriber(it), UiThreadImmediateExecutorService.getInstance()) }
         }
     }
 
@@ -103,7 +100,8 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
             }
 
             override fun onProgressUpdate(dataSource: DataSource<CloseableReference<CloseableImage>>?) {
-                imageLoadListener.onProgress(dataSource!!.progress)
+                dataSource?.let { imageLoadListener.onProgress(dataSource.progress) }
+
             }
 
             override fun onCancellation(dataSource: DataSource<CloseableReference<CloseableImage>>?) {
@@ -122,7 +120,7 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
 
     private fun setHierarchy(displayRequest: DisplayRequest) {
         val builder = GenericDraweeHierarchyBuilder(context.resources)
-        displayRequest.mActualImageScaleType.let { builder.actualImageScaleType = ScaleTypeUtils.transferActualScaleType(it!!) }
+        displayRequest.mActualImageScaleType?.let { builder.actualImageScaleType = ScaleTypeUtils.transferActualScaleType(it) }
         hierarchy = builder.build()
     }
 
@@ -165,21 +163,21 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
     }
 
     private fun buildCropOptions(builder: ImageRequestBuilder, displayRequest: DisplayRequest) {
-        displayRequest.mCropOptions.let {
-            builder.postprocessor = CropPostProcessor(it!!)
+        displayRequest.mCropOptions?.let {
+            builder.postprocessor = CropPostProcessor(it)
         }
     }
 
     private fun buildCircleOptions(displayRequest: DisplayRequest) {
-        displayRequest.mCircleOptions.let {
+        displayRequest.mCircleOptions?.let {
             val roundingParams = hierarchy.roundingParams?: RoundingParams()
 
-            it?.mCornersRadiiOptions.let {
-                roundingParams.setCornersRadii(it!!.topLeft, it.topRight,
+            it?.mCornersRadiiOptions?.let {
+                roundingParams.setCornersRadii(it.topLeft, it.topRight,
                         it.bottomRight, it.bottomLeft)
             }
 
-            roundingParams.roundAsCircle = it!!.mRoundAsCircle
+            roundingParams.roundAsCircle = it.mRoundAsCircle
             roundingParams.setCornersRadius(it.mCornersRadius)
             roundingParams.borderWidth = it.mBorderWidth
             roundingParams.borderColor = it.mBorderColor

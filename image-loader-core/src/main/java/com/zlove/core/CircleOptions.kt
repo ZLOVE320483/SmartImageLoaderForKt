@@ -20,7 +20,7 @@ class CircleOptions(builder: Builder) {
 
     var mCornersRadius: Float
     var mPadding: Float
-    var mCornersRadiiOptions: CornersRadiiOptions
+    var mCornersRadiiOptions: CornersRadiiOptions?
     var mRoundingMethod: RoundingMethod? = null
 
     init {
