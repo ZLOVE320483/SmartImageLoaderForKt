@@ -24,7 +24,7 @@ class DisplayRequestBuilder {
     var mFailureImage = 0
     var mBitmapConfig: Bitmap.Config = Bitmap.Config.ARGB_8888
     var mActualImageScaleType = ScaleType.CENTER_CROP
-    lateinit var mUrlList: List<String>
+    var mUrlList: List<String>? = null
     var mCircleOptions: CircleOptions? = null
     var mBlurOptions: BlurOptions? = null
     var mCropOptions: CropOptions? = null

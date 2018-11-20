@@ -41,7 +41,7 @@ class CircleOptions(builder: Builder) {
         var mOverlayColor = Color.TRANSPARENT
         var mCornersRadius = 0f
         var mPadding = 0f
-        lateinit var mCornersRadiiOptions: CornersRadiiOptions
+        var mCornersRadiiOptions: CornersRadiiOptions? = null
         var mRoundingMethod = RoundingMethod.BITMAP_ONLY
 
         fun border(@ColorInt borderColor: Int, borderWidth: Float): Builder {

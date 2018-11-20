@@ -28,7 +28,7 @@ class DisplayRequest(builder: DisplayRequestBuilder) {
     @Nullable
     var mActualImageScaleType: ScaleType? = null
 
-    var mUrlList: List<String>
+    var mUrlList: List<String>?
 
     @Nullable
     var mCircleOptions: CircleOptions? = null

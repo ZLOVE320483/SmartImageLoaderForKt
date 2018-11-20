@@ -38,8 +38,8 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
     constructor(context: Context?, attrs: AttributeSet?, defStyle: Int) : super(context, attrs, defStyle)
 
     override fun display(displayRequest: DisplayRequest) {
-        if (!displayRequest.mUrlList.isEmpty()) {
-            val requests = buildImageRequests(displayRequest, displayRequest.mUrlList)
+        if (displayRequest.mUrlList != null && !displayRequest.mUrlList!!.isEmpty()) {
+            val requests = buildImageRequests(displayRequest, displayRequest.mUrlList!!)
             buildControllerForImageRequests(displayRequest, requests)
 
         } else {
@@ -73,8 +73,8 @@ class SmartImageView: SimpleDraweeView, ISmartImageView {
     override fun load(displayRequest: DisplayRequest) {
         val imageLoadListener = displayRequest.mImageLoadListener
 
-        if (!displayRequest.mUrlList.isEmpty()) {
-            val urlList = displayRequest.mUrlList
+        if (displayRequest.mUrlList != null && !displayRequest.mUrlList!!.isEmpty()) {
+            val urlList = displayRequest.mUrlList!!
             for (url in urlList) {
                 val imageRequest = buildImageRequest(displayRequest, com.zlove.core.utils.Utils.fromUrl(url))
                 val imagePipeline = Fresco.getImagePipeline()

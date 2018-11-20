@@ -6,5 +6,5 @@ import java.io.File
 interface ConfigProvider {
 
     fun getApplication(): Application
-    fun getDiskCacheDir(): File
+    fun getDiskCacheDir(): File?
 }
