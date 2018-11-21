@@ -69,7 +69,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun initToolbar() {
         setSupportActionBar(toolbar)
-        collapsing_toolbar.title = resources.getString(R.string.app_name)
+        collapsing_toolbar.title = resources.getString(R.string.fresco_app_name)
         supportActionBar!!.setDisplayShowHomeEnabled(true)
     }
 
